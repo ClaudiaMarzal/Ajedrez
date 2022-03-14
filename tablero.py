@@ -1,25 +1,32 @@
 class Tablero:
     tablero = {}
-    letras = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    for j in range(8, 0, -1):
-        for letra in letras:
-            tablero[letra + str(j)] = None
+    def __init__(self, tablero = {}):
+        if tablero != {}:
+            self.tablero = tablero
+        else:
+            letras = ["a", "b", "c", "d", "e", "f", "g", "h"]
+            for j in range(8, 0, -1):
+                for letra in letras:
+                    self.tablero[letra + str(j)] = None
+            orden_piezas = ["T", "C", "A", "D", "R", "A", "C", "T"]
+            blancas = 0
+            negras = 0
+            for key in self.tablero:
+                if key[1] == "8":
+                    self.tablero[key] = orden_piezas[negras] + "-N"
+                    negras += 1
+                elif key[1] == "1":
+                    self.tablero[key] = orden_piezas[blancas] + "-B"
+                    blancas += 1
+                elif key[1] == "7":
+                    self.tablero[key] = "P-N"
+                elif key[1] == "2":
+                    self.tablero[key] = "P-B"
+    def mover(self, inicial, final):
+        pieza = self.tablero[inicial]
+        self.tablero[inicial] = None
+        self.tablero[final] = pieza
 
-    orden_piezas = ["T", "C", "A", "D", "R", "A", "C", "T"]
-    blancas = 0
-    negras = 0
-    for key in tablero:
-        if key[1] == "8":
-            tablero[key] = orden_piezas[negras] + "-N"
-            negras += 1
-        elif key[1] == "1":
-            tablero[key] = orden_piezas[blancas] + "-B"
-            blancas += 1
-        elif key[1] == "7":
-            tablero[key] = "P-N"
-        elif key[1] == "2":
-            tablero[key] = "P-B"
-    
     def imprimir_tablero(self):
         for i in range(8, 0, -1):
             fila = "|"
@@ -29,8 +36,11 @@ class Tablero:
                     if elemento == None:
                         elemento = "   "
                     fila += elemento + "|"
+            print(" ---" * 8)
             print(fila)
+        print(" ---" * 8)
 
 
 tablero = Tablero()
-print(tablero.imprimir_tablero())
+tablero.mover("b2", "b3")
+tablero.imprimir_tablero()
