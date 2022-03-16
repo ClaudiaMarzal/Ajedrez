@@ -39,8 +39,3 @@ class Tablero:
             print(" ---" * 8)
             print(fila)
         print(" ---" * 8)
-
-
-tablero = Tablero()
-tablero.mover("b2", "b3")
-tablero.imprimir_tablero()
