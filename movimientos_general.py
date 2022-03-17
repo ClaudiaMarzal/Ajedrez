@@ -1,4 +1,5 @@
 from movimientos_horiz import mov_validos_horiz
+from movimientos_vertical import mov_validos_vertical
 from tablero import Tablero
 
 inicial,final = "Tc3 a8".split()
@@ -16,11 +17,14 @@ enemigo = "B" if aliado == "N" else "N"
 
 lista_mov_posibles = []
 
+
+
 def movimientos_validos_general(tablero,pieza,posicion_inicial):
     if pieza == "T":
         mov_validos_horiz(enemigo, estado_inicial, tablero, lista_mov_posibles,letras)
+        mov_validos_vertical(enemigo, estado_inicial, tablero, lista_mov_posibles)
         print(lista_mov_posibles)
-        #movimientos vertical
+        
     elif pieza == "A":
         #movimientos diagonales
         print("aaa")
