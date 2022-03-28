@@ -39,3 +39,5 @@ class Tablero:
             print(" ---" * 8)
             print(fila)
         print(" ---" * 8)
+
+        
